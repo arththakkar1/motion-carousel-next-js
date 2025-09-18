@@ -2,6 +2,10 @@
 
 A responsive and animated carousel built with **Next.js**, **TypeScript**, and **Motion** from Framer.
 
+## 🌐 Live Demo
+
+Check out the live demo: [motion-carousel-next-js.vercel.app](https://motion-carousel-next-js.vercel.app/)
+
 ## 🎯 About Motion
 
 `motion` is the core component from **Motion** used to animate elements in React. It wraps standard HTML/React elements and allows you to apply animations using simple props like `animate`, `initial`, and `transition`.
@@ -11,7 +15,7 @@ A responsive and animated carousel built with **Next.js**, **TypeScript**, and *
 - Next.js (App Router)
 - TypeScript
 - Tailwind CSS
-- `Motion` 
+- `Motion`
 
 ## ✨ Features
 
@@ -26,3 +30,4 @@ git clone https://github.com/arththakkar1/motion-carousel-next-js.git
 cd motion-carousel-next-js
 npm install
 npm run dev
+```
