@@ -3,7 +3,7 @@ import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { motion, useMotionValue, useMotionValueEvent } from "motion/react";
 import { useEffect, useState } from "react";
 
-export const img = [
+export const img: string[] = [
   "https://preview.redd.it/what-deluxe-volume-is-the-famous-panel-of-the-eclipse-v0-h8pmalb7w0jc1.jpg?width=768&format=pjpg&auto=webp&s=26994415b54e803de0f3a5e99015e139e1bb5e48",
   "https://images3.alphacoders.com/137/thumb-1920-1372691.png",
   "https://images5.alphacoders.com/133/thumb-1920-1334103.jpeg",
