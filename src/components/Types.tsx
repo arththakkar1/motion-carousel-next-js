@@ -14,7 +14,7 @@ const types = [
     link: "/peek-a-boo",
   },
   {
-    label: "Infine Loop",
+    label: "Infinite Loop",
     link: "/infinite-loop",
   },
   {

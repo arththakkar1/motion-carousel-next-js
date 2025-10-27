@@ -22,6 +22,25 @@ Check out the live demo: [motion-carousel-next-js.vercel.app](https://motion-car
 - Smooth slide transitions with `motion.div`
 - Responsive layout for all devices
 - Lightweight and easy to integrate
+- **Multiple carousel variants** to suit different use cases
+
+## 🎨 Carousel Types
+
+### Base Carousel
+
+The foundation carousel with essential navigation and smooth animations. Perfect for standard image galleries and content displays.
+
+### Peek-a-boo Carousel
+
+A modern carousel that shows previews of adjacent slides, creating an engaging browsing experience. Users can see what's coming next and previous, encouraging exploration.
+
+### Infinite Loop Carousel
+
+Seamlessly cycles through content with no visible start or end. Ideal for testimonials, partner logos, or any continuously rotating content.
+
+### Playlist Carousel
+
+Designed for media-rich content with a sidebar navigation showing all items. Perfect for video playlists, image collections, or any scenario where users need to see and jump to specific items.
 
 ## 🚀 Getting Started
 
@@ -31,3 +50,23 @@ cd motion-carousel-next-js
 npm install
 npm run dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000) to see the project in action.
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 👨‍💻 Author
+
+**Arth Thakkar**
+
+- GitHub: [@arththakkar1](https://github.com/arththakkar1)
+
+---
+
+⭐ Star this repo if you find it helpful!
