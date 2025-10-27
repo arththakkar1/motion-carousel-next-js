@@ -1,25 +1,22 @@
 "use client";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
-import {
-  motion,
-  AnimatePresence,
-  useMotionValue,
-  useMotionValueEvent,
-} from "motion/react";
+import { motion, useMotionValue, useMotionValueEvent } from "motion/react";
 import { useEffect, useState } from "react";
 
 const img = [
-  "https://images.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "https://images.pexels.com/photos/618833/pexels-photo-618833.jpeg",
-  "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "https://images.pexels.com/photos/552785/pexels-photo-552785.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  "https://images.pexels.com/photos/1183021/pexels-photo-1183021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  "https://preview.redd.it/what-deluxe-volume-is-the-famous-panel-of-the-eclipse-v0-h8pmalb7w0jc1.jpg?width=768&format=pjpg&auto=webp&s=26994415b54e803de0f3a5e99015e139e1bb5e48",
+  "https://images3.alphacoders.com/137/thumb-1920-1372691.png",
+  "https://images5.alphacoders.com/133/thumb-1920-1334103.jpeg",
+  "https://i.ytimg.com/vi/OQKN1Aqe69k/maxresdefault.jpg",
+  "https://images5.alphacoders.com/136/1364638.jpeg",
+  "https://i.pinimg.com/736x/57/de/b4/57deb4a336ce0d49193370bd32304674.jpg",
+  "https://pbs.twimg.com/media/GmsRlkOWoAA2dCr?format=jpg&name=medium",
 ];
 
 const DRAG_BUFFER = 50;
 const SPRING = { type: "spring", mass: 3, stiffness: 400, damping: 50 };
 const ONE_SECOUND = 1000;
-const AUTO_DELAY = ONE_SECOUND * 10;
+const AUTO_DELAY = ONE_SECOUND * 5;
 
 export default function Home() {
   const dragX = useMotionValue(0);
@@ -50,7 +47,7 @@ export default function Home() {
     }, AUTO_DELAY);
 
     return () => clearInterval(intervalRef);
-  }, []);
+  }, [dragXProgess]);
 
   const onDrageStart = () => {
     setDragging(true);
@@ -82,34 +79,35 @@ export default function Home() {
 
   return (
     <>
-      <AnimatePresence>
-        <div className="relative min-h-screen overflow-hidden bg-neutral-950 py-8">
-          <motion.div
-            drag="x"
-            dragConstraints={{
-              right: 0,
-              left: 0,
-            }}
-            transition={SPRING}
-            style={{
-              x: dragX,
-            }}
-            onDragStart={onDrageStart}
-            onDragEnd={onDrageEnd}
-            animate={{
-              translateX: `-${imgIndex * 100}%`,
-            }}
-            className="curser-grab active:cursor-grabbing flex items-center"
-          >
-            <Images
-              imgIndex={imgIndex}
-              handlePrev={handlePrev}
-              handleNext={handleNext}
-            />
-          </motion.div>
-          <GradientEdges />
-        </div>
-      </AnimatePresence>
+      {/* <AnimatePresence>  <-- This was causing the error */}
+
+      <div className="relative min-h-auto overflow-hidden bg-neutral-950 py-8">
+        <motion.div
+          drag="x"
+          dragConstraints={{
+            right: 0,
+            left: 0,
+          }}
+          transition={SPRING}
+          style={{
+            x: dragX,
+          }}
+          onDragStart={onDrageStart}
+          onDragEnd={onDrageEnd}
+          animate={{
+            translateX: `-${imgIndex * 100}%`,
+          }}
+          className="curser-grab active:cursor-grabbing flex items-center"
+        >
+          <Images
+            imgIndex={imgIndex}
+            handlePrev={handlePrev}
+            handleNext={handleNext}
+          />
+        </motion.div>
+        <GradientEdges />
+      </div>
+      {/* </AnimatePresence> <-- This was causing the error */}
     </>
   );
 }
@@ -127,7 +125,7 @@ const Images = ({
     <>
       {img.map((src, index) => (
         <motion.div
-          key={index}
+          key={index} // This key is correct
           style={{
             backgroundImage: `url(${src})`,
             backgroundSize: "cover",
@@ -137,7 +135,7 @@ const Images = ({
             scale: imgIndex === index ? 0.95 : 0.85,
           }}
           transition={SPRING}
-          className="aspect-video w-screen shrink-0 rounded-xl bg-neutral-800 object-cover"
+          className="aspect-video sm:h-[300px] md:h-[500px] lg:h-[600px] w-screen shrink-0 rounded-xl bg-neutral-800 object-cover"
         >
           <div className="flex justify-between h-full items-center">
             <button onClick={handlePrev}>
