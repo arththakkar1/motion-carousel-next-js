@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { img } from "../page";
+import { img } from "@/components/data";
 
 export default function Home() {
   const [selected, setSelected] = useState(0);

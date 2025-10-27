@@ -1,8 +1,8 @@
 "use client";
 
+import { img } from "@/components/data";
 import { motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
-import { img } from "../page";
 
 const SPRING = { type: "spring", mass: 3, stiffness: 400, damping: 50 };
 

@@ -1,7 +1,7 @@
 "use client";
+import { img } from "@/components/data";
 import { motion, useMotionValue, useAnimationFrame } from "motion/react";
 import { useRef, useState, useLayoutEffect } from "react";
-import { img } from "../page";
 
 export default function Home() {
   const x = useMotionValue(0);
