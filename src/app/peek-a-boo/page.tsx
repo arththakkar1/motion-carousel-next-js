@@ -2,16 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
-
-const img = [
-  "https://preview.redd.it/what-deluxe-volume-is-the-famous-panel-of-the-eclipse-v0-h8pmalb7w0jc1.jpg?width=768&format=pjpg&auto=webp&s=26994415b54e803de0f3a5e99015e139e1bb5e48",
-  "https://images3.alphacoders.com/137/thumb-1920-1372691.png",
-  "https://images5.alphacoders.com/133/thumb-1920-1334103.jpeg",
-  "https://i.ytimg.com/vi/OQKN1Aqe69k/maxresdefault.jpg",
-  "https://images5.alphacoders.com/136/1364638.jpeg",
-  "https://i.pinimg.com/736x/57/de/b4/57deb4a336ce0d49193370bd32304674.jpg",
-  "https://pbs.twimg.com/media/GmsRlkOWoAA2dCr?format=jpg&name=medium",
-];
+import { img } from "../page";
 
 const SPRING = { type: "spring", mass: 3, stiffness: 400, damping: 50 };
 
