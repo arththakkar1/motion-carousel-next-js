@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center p-[30px_10px] font-['DM_Sans',_sans-serif]">
-      <div className="flex w-full max-w-[900px] overflow-x-hidden h-[600px] flex-col items-center justify-center">
+      <div className="flex w-full max-w-[900px] overflow-x-hidden h-[300px] md:h-[600px] flex-col items-center justify-center">
         <div className="relative h-full w-full flex items-center justify-center">
           {img.map((src, index) => (
             <Card
