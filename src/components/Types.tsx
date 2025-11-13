@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const types = [
   {
@@ -80,23 +81,21 @@ export function Types() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <a
+                <Link
                   href={item.link}
                   className={`
                     relative px-6 py-2.5 rounded-full text-sm font-medium
                     transition-colors duration-300 ease-out
                     block whitespace-nowrap z-10
                     ${
-                      isActive
-                        ? "text-black" // Text is black when active pill is behind it
-                        : "text-gray-400 hover:text-white"
+                      isActive ? "text-black" : "text-gray-400 hover:text-white"
                     }
                   `}
                 >
                   {item.label}
                   {isActive && (
                     <motion.span
-                      layoutId="activeTab" // Framer Motion identifies this element across layout changes
+                      layoutId="activeTab"
                       className="absolute inset-0 z-[-1] rounded-full bg-white shadow-lg shadow-white/20"
                       transition={{
                         type: "spring",
@@ -106,13 +105,13 @@ export function Types() {
                       }}
                     />
                   )}
-                </a>
+                </Link>
               </motion.li>
             );
           })}
         </ul>
 
-        <div className="text-white md:hidden font-semibold px-4">Menu</div>
+        <div className="text-white md:hidden font-semibold px-4"></div>
 
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -143,7 +142,7 @@ export function Types() {
                   key={`mobile-${item.link}`}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <a
+                  <Link
                     href={item.link}
                     onClick={handleLinkClick}
                     className={`
@@ -157,7 +156,7 @@ export function Types() {
                     `}
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </motion.li>
               );
             })}
