@@ -19,8 +19,16 @@ const types = [
     link: "/infinite-loop",
   },
   {
+    label: "Insta Slide",
+    link: "/insta-slide",
+  },
+  {
     label: "Playlist",
     link: "/playlist",
+  },
+  {
+    label: "Instagram",
+    link: "/instagram",
   },
 ];
 
@@ -51,7 +59,6 @@ export function Types() {
     </svg>
   );
 
-  // SVG for the X (Close) icon
   const CloseIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -69,8 +76,8 @@ export function Types() {
   );
 
   return (
-    <nav className="fixed top-6 z-50 w-[96%] left-[2%] right-[2%] md:w-auto md:left-1/2 md:-translate-x-1/2">
-      <div className="bg-black/90 backdrop-blur-xl border border-white/10 rounded-full px-2 py-3 shadow-2xl flex items-center justify-between md:justify-center">
+    <nav className="fixed top-6 z-50 w-[96%] left-[2%] right-[2%] md:w-fit md:left-1/2 md:-translate-x-1/2">
+      <div className="bg-black/90 backdrop-blur-xl border border-white/10 rounded-full px-2 py-2 shadow-2xl flex items-center justify-between md:justify-center">
         <ul className="hidden md:flex items-center gap-1">
           {types.map((item) => {
             const isActive =
