@@ -42,6 +42,14 @@ Seamlessly cycles through content with no visible start or end. Ideal for testim
 
 Designed for media-rich content with a sidebar navigation showing all items. Perfect for video playlists, image collections, or any scenario where users need to see and jump to specific items.
 
+### Insta Slide
+
+A carousel inspired by Instagram’s slide experience — clean, minimal, and photo-focused. Ideal for showcasing posts, albums, or swipeable media content.
+
+### Instagram Carousel
+
+A richer Instagram-style carousel with reactions, buttons (like, comment, share, save), and UI similar to a real IG post. Great for replicating social-media-like interactions inside your app.
+
 ## 🚀 Getting Started
 
 ```bash
@@ -52,10 +60,6 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to see the project in action.
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to open issues or submit pull requests.
 
 ## 📄 License
 
