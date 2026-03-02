@@ -7,44 +7,20 @@ import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 
 const types = [
-  {
-    label: "Base",
-    link: "/",
-  },
-  {
-    label: "Peek a boo",
-    link: "/peek-a-boo",
-  },
-  {
-    label: "Infinite Loop",
-    link: "/infinite-loop",
-  },
-  {
-    label: "Insta Slide",
-    link: "/insta-slide",
-  },
-  {
-    label: "Playlist",
-    link: "/playlist",
-  },
-  {
-    label: "Instagram",
-    link: "/instagram",
-  },
-  {
-    label: "Infinite Logo",
-    link: "/infinite-logo",
-  },
+  { label: "Base", link: "/" },
+  { label: "Peek a boo", link: "/peek-a-boo" },
+  { label: "Infinite Loop", link: "/infinite-loop" },
+  { label: "Insta Slide", link: "/insta-slide" },
+  { label: "Playlist", link: "/playlist" },
+  { label: "Instagram", link: "/instagram" },
+  { label: "Infinite Logo", link: "/infinite-logo" },
 ];
 
 export function Types() {
   const pathname = usePathname();
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleLinkClick = () => {
-    setIsMenuOpen(false);
-  };
+  const handleLinkClick = () => setIsMenuOpen(false);
 
   const MenuIcon = (
     <svg
@@ -82,7 +58,18 @@ export function Types() {
 
   return (
     <nav className="fixed top-6 z-50 w-[96%] left-[2%] right-[2%] md:w-fit md:left-1/2 md:-translate-x-1/2">
-      <div className="bg-black/90 dark:bg-black/90 backdrop-blur-xl border border-white/10 dark:border-white/10 rounded-full px-2 py-2 shadow-2xl flex items-center justify-between md:justify-center gap-2">
+      {/* Nav pill
+          Light: soft white background, subtle gray border, dark text
+          Dark:  near-black background, white/10 border, light text
+      */}
+      <div
+        className="
+        bg-white/90 border-gray-200 shadow-gray-200/60
+        dark:bg-black/90 dark:border-white/10 dark:shadow-black/40
+        backdrop-blur-xl border rounded-full px-2 py-2 shadow-2xl
+        flex items-center justify-between md:justify-center gap-2
+      "
+      >
         <ul className="hidden md:flex items-center gap-1">
           {types.map((item) => {
             const isActive =
@@ -100,7 +87,9 @@ export function Types() {
                     transition-colors duration-300 ease-out
                     block whitespace-nowrap z-10
                     ${
-                      isActive ? "text-black" : "text-gray-400 hover:text-white"
+                      isActive
+                        ? "text-gray-900 dark:text-black"
+                        : "text-gray-400 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white"
                     }
                   `}
                 >
@@ -108,7 +97,7 @@ export function Types() {
                   {isActive && (
                     <motion.span
                       layoutId="activeTab"
-                      className="absolute inset-0 z-[-1] rounded-full bg-white shadow-lg shadow-white/20"
+                      className="absolute inset-0 z-[-1] rounded-full bg-gray-100 dark:bg-white shadow-sm shadow-gray-300/60 dark:shadow-white/20"
                       transition={{
                         type: "spring",
                         stiffness: 300,
@@ -123,14 +112,14 @@ export function Types() {
           })}
         </ul>
 
-        {/* Theme toggle — always visible */}
+        {/* Theme toggle */}
         <ThemeToggle />
 
-        <div className="text-white md:hidden font-semibold px-4"></div>
+        <div className="text-gray-800 dark:text-white md:hidden font-semibold px-4" />
 
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden p-2 text-white hover:bg-white/10 rounded-full transition-colors"
+          className="md:hidden p-2 text-gray-600 dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 rounded-full transition-colors"
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
         >
@@ -138,6 +127,10 @@ export function Types() {
         </button>
       </div>
 
+      {/* Mobile menu
+          Light: white bg, gray border
+          Dark:  near-black bg, white/10 border
+      */}
       {isMenuOpen && (
         <motion.div
           id="mobile-menu"
@@ -145,7 +138,12 @@ export function Types() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.2 }}
-          className="md:hidden mt-2 p-2 bg-black/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl w-full"
+          className="
+            md:hidden mt-2 p-2
+            bg-white/95 border-gray-200
+            dark:bg-black/90 dark:border-white/10
+            backdrop-blur-xl border rounded-xl shadow-2xl w-full
+          "
         >
           <ul className="flex flex-col gap-1">
             {types.map((item) => {
@@ -165,8 +163,8 @@ export function Types() {
                       block transition-all duration-300 ease-out
                       ${
                         isActive
-                          ? "bg-white text-black shadow-lg shadow-white/20"
-                          : "text-gray-400 hover:text-white hover:bg-white/5"
+                          ? "bg-gray-100 dark:bg-white text-gray-900 dark:text-black shadow-sm"
+                          : "text-gray-400 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5"
                       }
                     `}
                   >
