@@ -9,7 +9,7 @@ function PlaylistCarousel() {
   const [selected, setSelected] = useState(0);
   const totalImages = img.length;
   return (
-    <div className="flex min-h-screen w-full items-center justify-center p-[30px_10px] font-['DM_Sans',_sans-serif]">
+    <div className="flex min-h-screen w-full items-center justify-center p-[30px_10px] font-['DM_Sans',_sans-serif] bg-white dark:bg-neutral-950 transition-colors duration-300">
       <div className="flex w-full max-w-[900px] overflow-x-hidden h-[300px] md:h-[600px] flex-col items-center justify-center">
         <div className="relative h-full w-full flex items-center justify-center">
           {img.map((src, index) => (
@@ -24,13 +24,15 @@ function PlaylistCarousel() {
           ))}
         </div>
 
-        <div className="flex gap-2 mt-6">
+        <div className="flex gap-2 my-6">
           {img.map((_, index) => (
             <button
               key={index}
               onClick={() => setSelected(index)}
               className={`h-2 rounded-full transition-all ${
-                index === selected ? "w-8 bg-white" : "w-2 bg-gray-500"
+                index === selected
+                  ? "w-8 bg-gray-800 dark:bg-white"
+                  : "w-2 bg-gray-400 dark:bg-gray-500"
               }`}
             />
           ))}

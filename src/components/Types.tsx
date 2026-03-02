@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { ThemeToggle } from "./ThemeToggle";
 
 const types = [
   {
@@ -29,6 +30,10 @@ const types = [
   {
     label: "Instagram",
     link: "/instagram",
+  },
+  {
+    label: "Infinite Logo",
+    link: "/infinite-logo",
   },
 ];
 
@@ -77,7 +82,7 @@ export function Types() {
 
   return (
     <nav className="fixed top-6 z-50 w-[96%] left-[2%] right-[2%] md:w-fit md:left-1/2 md:-translate-x-1/2">
-      <div className="bg-black/90 backdrop-blur-xl border border-white/10 rounded-full px-2 py-2 shadow-2xl flex items-center justify-between md:justify-center">
+      <div className="bg-black/90 dark:bg-black/90 backdrop-blur-xl border border-white/10 dark:border-white/10 rounded-full px-2 py-2 shadow-2xl flex items-center justify-between md:justify-center gap-2">
         <ul className="hidden md:flex items-center gap-1">
           {types.map((item) => {
             const isActive =
@@ -117,6 +122,9 @@ export function Types() {
             );
           })}
         </ul>
+
+        {/* Theme toggle — always visible */}
+        <ThemeToggle />
 
         <div className="text-white md:hidden font-semibold px-4"></div>
 

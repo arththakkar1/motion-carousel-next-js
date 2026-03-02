@@ -72,7 +72,7 @@ export default function Home() {
     <>
       {/* <AnimatePresence>  <-- This was causing the error */}
 
-      <div className="relative min-h-auto overflow-hidden bg-neutral-950 py-8">
+      <div className="relative min-h-auto overflow-hidden  dark:bg-neutral-950 py-8">
         <motion.div
           drag="x"
           dragConstraints={{
@@ -153,8 +153,8 @@ const Images = ({
 const GradientEdges = () => {
   return (
     <>
-      <div className="pointer-events-none absolute bottom-0 left-0 top-0 w-[10vw] max-w-[100px] bg-gradient-to-r from-neutral-950/50 to-neutral-950/0"></div>
-      <div className="pointer-events-none absolute bottom-0 right-0 top-0 w-[10vw] max-w-[100px] bg-gradient-to-l from-neutral-950/50 to-neutral-950/0" />
+      <div className="pointer-events-none absolute bottom-0 left-0 top-0 w-[10vw] max-w-[100px] bg-gradient-to-r from-neutral-100/50 dark:from-neutral-950/50 to-transparent"></div>
+      <div className="pointer-events-none absolute bottom-0 right-0 top-0 w-[10vw] max-w-[100px] bg-gradient-to-l from-neutral-100/50 dark:from-neutral-950/50 to-transparent" />
     </>
   );
 };

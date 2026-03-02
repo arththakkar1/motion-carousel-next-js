@@ -38,6 +38,10 @@ A modern carousel that shows previews of adjacent slides, creating an engaging b
 
 Seamlessly cycles through content with no visible start or end. Ideal for testimonials, partner logos, or any continuously rotating content.
 
+### Infinite Logo Carousel
+
+A specialized infinite carousel designed for displaying partner or brand logos in a continuous loop. Perfect for showcasing sponsors, clients, or technology stacks with smooth, uninterrupted motion.
+
 ### Playlist Carousel
 
 Designed for media-rich content with a sidebar navigation showing all items. Perfect for video playlists, image collections, or any scenario where users need to see and jump to specific items.

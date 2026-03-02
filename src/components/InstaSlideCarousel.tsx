@@ -66,20 +66,24 @@ const InstagramSlideCarousel = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-zinc-950">
-      <div className="w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-zinc-800">
+    <div className="min-h-screen flex items-center justify-center p-4  dark:bg-zinc-950 transition-colors duration-300">
+      <div className="w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-zinc-300 dark:border-zinc-800 transition-colors duration-300">
         {/* Header */}
-        <div className="flex items-center gap-3 p-4 border-b border-zinc-800 bg-zinc-900">
+        <div className="flex items-center gap-3 p-4 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 transition-colors duration-300">
           <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 p-0.5">
-            <div className="w-full h-full rounded-full bg-zinc-900 flex items-center justify-center">
+            <div className="w-full h-full rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center">
               <span className="text-sm font-semibold">🌟</span>
             </div>
           </div>
           <div className="flex-1">
-            <p className="font-semibold text-sm text-white">bhupendrajogi</p>
-            <p className="text-xs text-gray-400">Nature & Travel</p>
+            <p className="font-semibold text-sm text-zinc-800 dark:text-white">
+              bhupendrajogi
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              Nature & Travel
+            </p>
           </div>
-          <button className="text-gray-300">•••</button>
+          <button className="text-gray-500 dark:text-gray-300">•••</button>
         </div>
 
         {/* Carousel */}
@@ -140,7 +144,7 @@ const InstagramSlideCarousel = () => {
         </div>
 
         {/* Actions */}
-        <div className="p-4 space-y-3 bg-zinc-900">
+        <div className="p-4 space-y-3 bg-white dark:bg-zinc-900 transition-colors duration-300">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <button
@@ -151,15 +155,15 @@ const InstagramSlideCarousel = () => {
                   className={`w-7 h-7 transition-all duration-300 ${
                     isLiked
                       ? "fill-red-500 text-red-500 scale-110"
-                      : "text-white"
+                      : "text-zinc-800 dark:text-white"
                   }`}
                 />
               </button>
               <button className="transition-transform hover:scale-110">
-                <MessageCircle className="w-7 h-7 text-white" />
+                <MessageCircle className="w-7 h-7 text-zinc-800 dark:text-white" />
               </button>
               <button className="transition-transform hover:scale-110">
-                <Send className="w-7 h-7 text-white" />
+                <Send className="w-7 h-7 text-zinc-800 dark:text-white" />
               </button>
             </div>
             <button
@@ -168,20 +172,31 @@ const InstagramSlideCarousel = () => {
             >
               <Bookmark
                 className={`w-6 h-6 transition-all ${
-                  isBookmarked ? "fill-white text-white" : "text-white"
+                  isBookmarked
+                    ? "fill-zinc-800 dark:fill-white text-zinc-800 dark:text-white"
+                    : "text-zinc-800 dark:text-white"
                 }`}
               />
             </button>
           </div>
 
           <div className="space-y-1">
-            <p className="font-semibold text-sm text-white">2,847 likes</p>
-            <p className="text-sm text-gray-200">
-              <span className="font-semibold text-white">bhupendrajogi</span> US
-              me kaha kaha gaye ho? bahot gaja gaya hu, nam batye? bhupendrajogi
+            <p className="font-semibold text-sm text-zinc-800 dark:text-white">
+              2,847 likes
             </p>
-            <p className="text-gray-400 text-xs">View all 124 comments</p>
-            <p className="text-gray-500 text-xs uppercase">2 hours ago</p>
+            <p className="text-sm text-zinc-700 dark:text-gray-200">
+              <span className="font-semibold text-zinc-800 dark:text-white">
+                bhupendrajogi
+              </span>{" "}
+              US me kaha kaha gaye ho? bahot gaja gaya hu, nam batye?
+              bhupendrajogi
+            </p>
+            <p className="text-gray-500 dark:text-gray-400 text-xs">
+              View all 124 comments
+            </p>
+            <p className="text-gray-400 dark:text-gray-500 text-xs uppercase">
+              2 hours ago
+            </p>
           </div>
         </div>
       </div>
