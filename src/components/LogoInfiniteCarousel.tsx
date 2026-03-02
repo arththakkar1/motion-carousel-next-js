@@ -11,6 +11,55 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import Image from "next/image";
 
+const buttonVariants = cva(
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10",
+      },
+    },
+    defaultVariants: { variant: "default", size: "default" },
+  },
+);
+
+export interface ButtonProps
+  extends
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    );
+  },
+);
+Button.displayName = "Button";
+
+export { Button, buttonVariants };
+
 interface Logo {
   id: string;
   description: string;
@@ -83,12 +132,8 @@ const Carousel = React.forwardRef<
       setCanScrollNext(api.canScrollNext());
     }, []);
 
-    const scrollPrev = React.useCallback(() => {
-      api?.scrollPrev();
-    }, [api]);
-    const scrollNext = React.useCallback(() => {
-      api?.scrollNext();
-    }, [api]);
+    const scrollPrev = React.useCallback(() => api?.scrollPrev(), [api]);
+    const scrollNext = React.useCallback(() => api?.scrollNext(), [api]);
 
     const handleKeyDown = React.useCallback(
       (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -107,6 +152,7 @@ const Carousel = React.forwardRef<
       if (!api || !setApi) return;
       setApi(api);
     }, [api, setApi]);
+
     React.useEffect(() => {
       if (!api) return;
       onSelect(api);
@@ -254,6 +300,8 @@ export {
   CarouselNext,
 };
 
+// ─── Logos3 ──────────────────────────────────────────────────────────────────
+
 const Logos3 = ({
   heading = "Trusted by these companies",
   logos = [
@@ -315,15 +363,25 @@ const Logos3 = ({
   ],
 }: Logos3Props) => {
   return (
-    <section className="py-16">
-      <div className="container flex flex-col items-center text-center">
-        <h2 className="my-6 text-2xl font-bold lg:text-4xl">{heading}</h2>
+    <section className="py-16 overflow-hidden">
+      {/* Heading */}
+      <div className="container flex flex-col items-center text-center px-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-3">
+          Powered by
+        </p>
+        <h2 className="text-2xl font-bold lg:text-4xl text-foreground">
+          {heading}
+        </h2>
+        {/* Subtle divider */}
+        <div className="mt-6 h-px w-16 bg-border" />
       </div>
-      <div className="pt-10 md:pt-16 lg:pt-20">
+
+      {/* Carousel */}
+      <div className="pt-10 md:pt-14 lg:pt-16">
         <div className="relative mx-auto flex items-center justify-center lg:max-w-5xl">
           <Carousel
             opts={{ loop: true }}
-            plugins={[AutoScroll({ playOnInit: true })]}
+            plugins={[AutoScroll({ playOnInit: true, speed: 1.2 })]}
           >
             <CarouselContent className="ml-0">
               {logos.map((logo) => (
@@ -331,11 +389,12 @@ const Logos3 = ({
                   key={logo.id}
                   className="flex basis-1/3 justify-center pl-0 sm:basis-1/4 md:basis-1/5 lg:basis-1/6"
                 >
-                  <div className="mx-10 flex shrink-0 items-center justify-center">
+                  <div className="mx-8 flex shrink-0 items-center justify-center opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0">
                     <Image
                       src={logo.image}
                       alt={logo.description}
-                      className={logo.className}
+                      // FIX: invert logos in dark mode so black SVGs are visible on dark backgrounds
+                      className={cn(logo.className, "dark:invert")}
                       width={1000}
                       height={1000}
                     />
@@ -344,61 +403,14 @@ const Logos3 = ({
               ))}
             </CarouselContent>
           </Carousel>
-          <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-background to-transparent" />
-          <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-background to-transparent" />
+
+          {/* FIX: fade overlays use explicit bg colors that respect dark/light mode */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background to-transparent" />
         </div>
       </div>
     </section>
   );
 };
-
-const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-      },
-      size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
-      },
-    },
-    defaultVariants: { variant: "default", size: "default" },
-  },
-);
-
-export interface ButtonProps
-  extends
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
-}
-
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    );
-  },
-);
-Button.displayName = "Button";
-
-export { Button, buttonVariants };
 
 export { Logos3 };
