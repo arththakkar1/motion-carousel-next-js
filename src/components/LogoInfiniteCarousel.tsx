@@ -393,7 +393,6 @@ const Logos3 = ({
                     <Image
                       src={logo.image}
                       alt={logo.description}
-                      // FIX: invert logos in dark mode so black SVGs are visible on dark backgrounds
                       className={cn(logo.className, "dark:invert")}
                       width={1000}
                       height={1000}
